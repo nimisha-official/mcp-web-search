@@ -1,3 +1,4 @@
+import os
 from googlesearch import search
 import requests
 from bs4 import BeautifulSoup
@@ -5,7 +6,7 @@ from schemas import ToolMetadata
 from groq import Groq  # or whatever SDK you're using
 
 # Setup your Groq or other LLM client
-llm = Groq(api_key="YOUR_GROQ_API_KEY")
+llm = Groq(api_key=os.environ["GROQ_API_KEY"])
 
 tool_metadata = ToolMetadata(
     name="web_search_summarizer",
