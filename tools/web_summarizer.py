@@ -32,8 +32,12 @@ def run(params):
         try:
             res = requests.get(url, timeout=10)
             soup = BeautifulSoup(res.content, "html.parser")
-            paragraphs = [p.get_text(strip=True) for p in soup.find_all('p')]
-            full_text = "\n".join(paragraphs)[:3000]
+            # Collect multiple tag types
+            tag_texts = []
+            for tag in ['p', 'li', 'h1', 'h2', 'h3', 'div']:
+                tag_texts.extend([el.get_text(strip=True) for el in soup.find_all(tag)])
+
+            full_text = "\n".join(tag_texts)[:3000]
 
             summary_prompt = f"Summarize the following article content:\n\n{full_text}"
             summary = llm.chat.completions.create(
