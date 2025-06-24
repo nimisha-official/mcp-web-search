@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+requests
+beautifulsoup4
+googlesearch-python
+groq  # or appropriate SDK for your LLM
