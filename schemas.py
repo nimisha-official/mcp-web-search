@@ -4,7 +4,7 @@ from typing import Optional, Any, Dict
 class JSONRPCRequest(BaseModel):
     jsonrpc: str
     method: str
-    params: Optional[dict]
+    params: Optional[dict] = None  # ✅ Default = None
     id: Optional[str]
 
 class JSONRPCResponse(BaseModel):
